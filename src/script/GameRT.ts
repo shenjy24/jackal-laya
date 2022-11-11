@@ -1,4 +1,6 @@
 import HelloInput from '../feature/Input';
+import SpriteImage from '../feature/SpriteImage';
+import SpriteSwitchImage from '../feature/SpriteSwitchImage';
 import HelloText from '../feature/Text'
 export default class GameRT extends Laya.Script {
     /** @prop {name:strType, tips:"字符串类型示例", type:String, default:"laya"}*/
@@ -11,6 +13,8 @@ export default class GameRT extends Laya.Script {
         console.log("Hello " + this.strType)
         new HelloText()
         new HelloInput()
+        new SpriteImage()
+        new SpriteSwitchImage()
     }
 
     onDisable(): void {

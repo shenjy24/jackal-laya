@@ -81,6 +81,52 @@
         }
     }
 
+    class SpriteImage {
+        constructor() {
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
+            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#ffffff";
+            this.showApe();
+        }
+        showApe() {
+            let ape = new Laya.Sprite();
+            ape.pos(100, 50);
+            Laya.stage.addChild(ape);
+            ape.loadImage("res/apes/monkey3.png");
+        }
+    }
+
+    class SpriteSwitchImage {
+        constructor() {
+            this.texture1 = "res/apes/monkey2.png";
+            this.texture2 = "res/apes/monkey3.png";
+            this.flag = false;
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
+            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#ffffff";
+            Laya.loader.load([this.texture1, this.texture2], Laya.Handler.create(this, this.onAssetsLoader));
+        }
+        onAssetsLoader() {
+            this.ape = new Laya.Sprite();
+            Laya.stage.addChild(this.ape);
+            this.ape.pivot(55, 72);
+            this.ape.pos(100, 50);
+            this.switchTexture();
+            this.ape.on("click", this, this.switchTexture);
+        }
+        switchTexture() {
+            let textureUrl = (this.flag = !this.flag) ? this.texture1 : this.texture2;
+            this.ape.graphics.clear();
+            let texture = Laya.loader.getRes(textureUrl);
+            this.ape.loadImage(textureUrl);
+            this.ape.size(texture.width, texture.height);
+        }
+    }
+
     class HelloText {
         constructor() {
             Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
@@ -110,6 +156,8 @@
             console.log("Hello " + this.strType);
             new HelloText();
             new HelloInput();
+            new SpriteImage();
+            new SpriteSwitchImage();
         }
         onDisable() {
         }
@@ -119,7 +167,7 @@
         constructor() { super(); }
         onEnable() {
             this.btn.on(Laya.Event.CLICK, this, () => {
-                Laya.Scene.open("BitmapFont.scene");
+                Laya.Scene.open("Game.scene");
             });
         }
         onDisable() {
