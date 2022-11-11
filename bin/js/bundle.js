@@ -1,6 +1,48 @@
 (function () {
     'use strict';
 
+    var Scene = Laya.Scene;
+    var REG = Laya.ClassUtils.regClass;
+    var ui;
+    (function (ui) {
+        class BitmapFontUI extends Scene {
+            constructor() { super(); }
+            createChildren() {
+                super.createChildren();
+                this.loadScene("BitmapFont");
+            }
+        }
+        ui.BitmapFontUI = BitmapFontUI;
+        REG("ui.BitmapFontUI", BitmapFontUI);
+    })(ui || (ui = {}));
+
+    class BitmapFontRT extends ui.BitmapFontUI {
+        constructor() {
+            super();
+            this.fontName = "diyFont";
+        }
+        onAwake() {
+            this.loadBitmapFont();
+        }
+        loadBitmapFont() {
+            let bitmapFont = new Laya.BitmapFont();
+            bitmapFont.loadFont("res/test.fnt", new Laya.Handler(this, this.onFontLoaded, [bitmapFont]));
+        }
+        onFontLoaded(bitmapFont) {
+            Laya.Text.registerBitmapFont(this.fontName, bitmapFont);
+            this.createText(this.fontName);
+        }
+        createText(font) {
+            var txt = new Laya.Text();
+            txt.width = 260;
+            txt.wordWrap = true;
+            txt.text = "Do one thing at a time, and do well.";
+            txt.font = font;
+            txt.leading = 15;
+            this.bf.addChild(txt);
+        }
+    }
+
     class HelloInput {
         constructor() {
             Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
@@ -77,7 +119,7 @@
         constructor() { super(); }
         onEnable() {
             this.btn.on(Laya.Event.CLICK, this, () => {
-                Laya.Scene.open("Game.scene");
+                Laya.Scene.open("BitmapFont.scene");
             });
         }
         onDisable() {
@@ -88,6 +130,7 @@
         constructor() { }
         static init() {
             var reg = Laya.ClassUtils.regClass;
+            reg("script/BitmapFontRT.ts", BitmapFontRT);
             reg("script/GameRT.ts", GameRT);
             reg("script/MainRT.ts", MainRT);
         }

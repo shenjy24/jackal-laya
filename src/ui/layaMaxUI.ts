@@ -3,3 +3,15 @@ import View=Laya.View;
 import Dialog=Laya.Dialog;
 import Scene=Laya.Scene;
 var REG: Function = Laya.ClassUtils.regClass;
+export module ui {
+    export class BitmapFontUI extends Scene {
+		public bf:Laya.Sprite;
+		public _label:Laya.Label;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("BitmapFont");
+        }
+    }
+    REG("ui.BitmapFontUI",BitmapFontUI);
+}

@@ -8,7 +8,7 @@ export default class MainRT extends Laya.Script {
     onEnable(): void {
         this.btn.on(Laya.Event.CLICK, this, () => {
             //点击后，打开UI场景示例
-            Laya.Scene.open("Game.scene")
+            Laya.Scene.open("BitmapFont.scene")
         });
     }
 
