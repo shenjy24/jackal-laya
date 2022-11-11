@@ -1,7 +1,0 @@
-{
-  "code": "import HelloInput from '../feature/Input';\r\nimport HelloText from '../feature/Text';\r\nexport default class GameRT extends Laya.Script {\r\n    constructor() {\r\n        super();\r\n        this.strType = \"laya\";\r\n    }\r\n    onEnable() {\r\n        console.log(\"Hello \" + this.strType);\r\n        new HelloText();\r\n        new HelloInput();\r\n    }\r\n    onDisable() {\r\n    }\r\n}\r\n",
-  "references": [
-    "/Users/shenjiayun/Documents/workspace/game/laya/jackal-laya/src/feature/Input.ts",
-    "/Users/shenjiayun/Documents/workspace/game/laya/jackal-laya/src/feature/Text.ts"
-  ]
-}

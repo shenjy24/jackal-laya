@@ -1,4 +1,0 @@
-{
-  "code": "export default class GameManager extends Laya.Script {\r\n    constructor() {\r\n        super();\r\n        this.intType = 1000;\r\n        this.numType = 1000;\r\n        this.strType = \"hello laya\";\r\n        this.boolType = true;\r\n    }\r\n    onEnable() {\r\n        console.log(\"Hello Laya\");\r\n    }\r\n    onDisable() {\r\n    }\r\n}\r\n",
-  "references": []
-}
