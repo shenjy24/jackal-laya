@@ -1,4 +1,4 @@
-export default class GameRoot extends Laya.Script {
+export default class MainRT extends Laya.Script {
     /** @prop {name:btn, type:Node}*/
     public btn: Laya.Button;
     // 更多参数说明请访问: https://ldc2.layabox.com/doc/?nav=zh-as-2-4-0

@@ -1,0 +1,4 @@
+{
+  "code": "export default class HelloText {\r\n    constructor() {\r\n        Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);\r\n        Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;\r\n        Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;\r\n        Laya.stage.scaleMode = \"showall\";\r\n        Laya.stage.bgColor = \"#232628\";\r\n        let txt = new Laya.Text();\r\n        txt.text = \"hello laya\";\r\n        txt.color = \"#ffffff\";\r\n        txt.font = \"Ya Hei\";\r\n        txt.fontSize = 32;\r\n        txt.bgColor = \"#c30c30\";\r\n        txt.borderColor = \"#23cfcf\";\r\n        txt.bold = true;\r\n        txt.italic = true;\r\n        Laya.stage.addChild(txt);\r\n    }\r\n}\r\n",
+  "references": []
+}
