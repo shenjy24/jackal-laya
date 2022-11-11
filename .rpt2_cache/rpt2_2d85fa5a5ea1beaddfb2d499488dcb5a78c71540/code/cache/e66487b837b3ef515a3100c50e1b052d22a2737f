@@ -1,0 +1,4 @@
+{
+  "code": "export default class GameRoot extends Laya.Script {\r\n    constructor() { super(); }\r\n    onEnable() {\r\n        this.btn.on(Laya.Event.CLICK, this, () => {\r\n            Laya.Scene.open(\"Manager.scene\");\r\n        });\r\n    }\r\n    onDisable() {\r\n    }\r\n}\r\n",
+  "references": []
+}

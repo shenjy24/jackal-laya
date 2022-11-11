@@ -1,0 +1,33 @@
+{
+    "type": "Scene",
+    "props": {
+        "width": 640,
+        "height": 1136
+    },
+    "compId": 2,
+    "child": [
+        {
+            "type": "Button",
+            "props": {
+                "y": 500,
+                "x": 300,
+                "skin": "comp/button.png",
+                "name": "btn",
+                "label": "点击"
+            },
+            "compId": 4
+        },
+        {
+            "type": "Script",
+            "props": {
+                "btn": "@node:4",
+                "runtime": "script/MainRT.ts"
+            },
+            "compId": 5
+        }
+    ],
+    "loadList": [
+        "comp/button.png"
+    ],
+    "loadList3D": []
+}
