@@ -1,7 +1,9 @@
 import HelloInput from '../feature/text/Input';
-import LoadImageToSwitch from '../feature/image/LoadImageToSwitch';
 import HelloText from '../feature/text/Text'
+import LoadImageToSwitch from '../feature/image/LoadImageToSwitch';
 import LoadImage from '../feature/image/LoadImage';
+import DrawTexture from '../feature/image/DrawTexture';
+import DrawTextureToSwitch from '../feature/image/DrawTextureToSwitch';
 export default class GameRT extends Laya.Script {
     /** @prop {name:strType, tips:"字符串类型示例", type:String, default:"laya"}*/
     public strType: string = "laya";
@@ -19,6 +21,9 @@ export default class GameRT extends Laya.Script {
         new LoadImage()
         // 展示图片，点击切换
         new LoadImageToSwitch()
+        // drawTexture方法显示与切换图片
+        new DrawTexture()
+        new DrawTextureToSwitch()
     }
 
     onDisable(): void {

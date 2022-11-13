@@ -81,52 +81,6 @@
         }
     }
 
-    class SpriteImage {
-        constructor() {
-            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
-            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
-            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
-            Laya.stage.scaleMode = "showall";
-            Laya.stage.bgColor = "#ffffff";
-            this.showApe();
-        }
-        showApe() {
-            let ape = new Laya.Sprite();
-            ape.pos(100, 50);
-            Laya.stage.addChild(ape);
-            ape.loadImage("res/apes/monkey3.png");
-        }
-    }
-
-    class SpriteSwitchImage {
-        constructor() {
-            this.texture1 = "res/apes/monkey2.png";
-            this.texture2 = "res/apes/monkey3.png";
-            this.flag = false;
-            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
-            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
-            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
-            Laya.stage.scaleMode = "showall";
-            Laya.stage.bgColor = "#ffffff";
-            Laya.loader.load([this.texture1, this.texture2], Laya.Handler.create(this, this.onAssetsLoader));
-        }
-        onAssetsLoader() {
-            this.ape = new Laya.Sprite();
-            Laya.stage.addChild(this.ape);
-            this.ape.pivot(55, 72);
-            this.ape.pos(100, 50);
-            this.switchTexture();
-            this.ape.on("click", this, this.switchTexture);
-        }
-        switchTexture() {
-            let textureUrl = (this.flag = !this.flag) ? this.texture1 : this.texture2;
-            this.ape.graphics.clear();
-            let texture = Laya.loader.getRes(textureUrl);
-            this.ape.loadImage(textureUrl);
-            this.ape.size(texture.width, texture.height);
-        }
-    }
-
     class HelloText {
         constructor() {
             Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
@@ -147,6 +101,101 @@
         }
     }
 
+    class SpriteSwitchImage {
+        constructor() {
+            this.texture1 = "res/apes/monkey2.png";
+            this.texture2 = "res/apes/monkey3.png";
+            this.flag = false;
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
+            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#ffffff";
+            Laya.loader.load([this.texture1, this.texture2], Laya.Handler.create(this, this.onAssetsLoader));
+        }
+        onAssetsLoader() {
+            this.ape = new Laya.Sprite();
+            Laya.stage.addChild(this.ape);
+            this.ape.pivot(55, 72);
+            this.ape.pos(100, 300);
+            this.switchTexture();
+            this.ape.on("click", this, this.switchTexture);
+        }
+        switchTexture() {
+            let textureUrl = (this.flag = !this.flag) ? this.texture1 : this.texture2;
+            this.ape.graphics.clear();
+            let texture = Laya.loader.getRes(textureUrl);
+            this.ape.loadImage(textureUrl);
+            this.ape.size(texture.width, texture.height);
+        }
+    }
+
+    class LoadImage {
+        constructor() {
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
+            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#ffffff";
+            this.showApe();
+        }
+        showApe() {
+            let ape = new Laya.Sprite();
+            ape.pos(100, 50);
+            Laya.stage.addChild(ape);
+            ape.loadImage("res/apes/monkey2.png");
+        }
+    }
+
+    class DrawTexture {
+        constructor() {
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
+            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#ffffff";
+            this.showApe();
+        }
+        showApe() {
+            Laya.loader.load("res/apes/monkey2.png", Laya.Handler.create(this, () => {
+                let t = Laya.loader.getRes("res/apes/monkey2.png");
+                let ape = new Laya.Sprite();
+                ape.graphics.drawTexture(t, 0, 0);
+                Laya.stage.addChild(ape);
+                ape.pos(300, 50);
+            }));
+        }
+    }
+
+    class DrawTextureToSwitch {
+        constructor() {
+            this.texture1 = "res/apes/monkey2.png";
+            this.texture2 = "res/apes/monkey3.png";
+            this.flag = false;
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.alignV = Laya.Stage.ALIGN_MIDDLE;
+            Laya.stage.alignH = Laya.Stage.ALIGN_CENTER;
+            Laya.stage.scaleMode = "showall";
+            Laya.stage.bgColor = "#232628";
+            Laya.loader.load([this.texture1, this.texture2], Laya.Handler.create(this, this.onAssetsLoaded));
+        }
+        onAssetsLoaded() {
+            this.ape = new Laya.Sprite();
+            Laya.stage.addChild(this.ape);
+            this.ape.pivot(55, 72);
+            this.ape.pos(300, 300);
+            this.switchTexture();
+            this.ape.on("click", this, this.switchTexture);
+        }
+        switchTexture() {
+            var textureUrl = (this.flag = !this.flag) ? this.texture1 : this.texture2;
+            this.ape.graphics.clear();
+            var texture = Laya.loader.getRes(textureUrl);
+            this.ape.graphics.drawTexture(texture, 0, 0);
+            this.ape.size(texture.width, texture.height);
+        }
+    }
+
     class GameRT extends Laya.Script {
         constructor() {
             super();
@@ -156,8 +205,10 @@
             console.log("Hello " + this.strType);
             new HelloText();
             new HelloInput();
-            new SpriteImage();
+            new LoadImage();
             new SpriteSwitchImage();
+            new DrawTexture();
+            new DrawTextureToSwitch();
         }
         onDisable() {
         }

@@ -13,6 +13,6 @@ export default class LoadImage {
         let ape:Laya.Sprite = new Laya.Sprite()
         ape.pos(100, 50)
         Laya.stage.addChild(ape)
-        ape.loadImage("res/apes/monkey3.png")
+        ape.loadImage("res/apes/monkey2.png")
     }
 }

@@ -19,7 +19,7 @@ export default class SpriteSwitchImage {
         this.ape = new Laya.Sprite()
         Laya.stage.addChild(this.ape)
         this.ape.pivot(55, 72)
-        this.ape.pos(100, 50)
+        this.ape.pos(100, 300)
 
         // 显示默认纹理
         this.switchTexture()
