@@ -203,6 +203,85 @@
             Laya.stage.addChild(sp);
             sp.graphics.drawLine(10, 58, 146, 58, "#FF0000", 3);
         }
+        drawLines() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawLines(20, 88, [0, 0, 39, -50, 78, 0, 120, -50], "#FF0000", 3);
+        }
+        drawCurves() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawCurves(10, 58, [0, 0, 19, -100, 39, 0], "#FF0000", 3);
+        }
+        drawTriangle() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawPoly(30, 28, [0, 100, 50, 0, 100, 100], "#FFFF00");
+        }
+        drawPolygon() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawPoly(130, 28, [0, 100, 50, 0, 100, 100, 75, 150, 25, 150], "#FFFF00");
+        }
+        drawStar() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            let path = [];
+            path.push(0, -130);
+            path.push(33, -33);
+            path.push(137, -30);
+            path.push(55, 32);
+            path.push(85, 130);
+            path.push(0, 73);
+            path.push(-85, 130);
+            path.push(-55, 32);
+            path.push(-137, -30);
+            path.push(-33, -33);
+            sp.graphics.drawPoly(Laya.stage.width / 2, Laya.stage.height / 2, path, "#FF7F50");
+        }
+        drawCircle() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawCircle(80, 80, 50, "#FF0000");
+        }
+        drawPie() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawPie(100, 100, 50, 90, 180, "#FF0000");
+        }
+        drawRect() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawRect(20, 20, 100, 50, "#FFFF00");
+        }
+        drawRectByPath() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            var path = [
+                ["moveTo", 0, 0],
+                ["lineTo", 100, 0],
+                ["lineTo", 100, 50],
+                ["lineTo", 0, 50],
+                ["closePath"]
+            ];
+            sp.graphics.drawPath(20, 20, path, { fillStyle: "#ff0000" });
+        }
+        drawRoundRect() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            var path = [
+                ["moveTo", 30, 0],
+                ["lineTo", 400, 0],
+                ["arcTo", 500, 0, 500, 30, 30],
+                ["lineTo", 500, 200],
+                ["arcTo", 500, 300, 470, 300, 30],
+                ["lineTo", 30, 300],
+                ["arcTo", 0, 300, 0, 270, 30],
+                ["lineTo", 0, 100],
+                ["arcTo", 0, 0, 30, 0, 30],
+            ];
+            sp.graphics.drawPath(100, 100, path, { fillStyle: "#00ffff" }, { "strokeStyle": "#ffffff", "lineWidth": "10" });
+        }
     }
 
     class GameRT extends Laya.Script {
@@ -220,6 +299,14 @@
             new DrawTextureToSwitch();
             let graphicsImage = new GraphicsImage();
             graphicsImage.drawLine();
+            graphicsImage.drawLines();
+            graphicsImage.drawCurves();
+            graphicsImage.drawTriangle();
+            graphicsImage.drawPolygon();
+            graphicsImage.drawStar();
+            graphicsImage.drawCircle();
+            graphicsImage.drawPie();
+            graphicsImage.drawRoundRect();
         }
         onDisable() {
         }

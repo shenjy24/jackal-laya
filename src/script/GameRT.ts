@@ -28,6 +28,14 @@ export default class GameRT extends Laya.Script {
         // 矢量图画图
         let graphicsImage = new GraphicsImage()
         graphicsImage.drawLine()
+        graphicsImage.drawLines()
+        graphicsImage.drawCurves()
+        graphicsImage.drawTriangle()
+        graphicsImage.drawPolygon()
+        graphicsImage.drawStar()
+        graphicsImage.drawCircle()
+        graphicsImage.drawPie()
+        graphicsImage.drawRoundRect()
     }
 
     onDisable(): void {
