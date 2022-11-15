@@ -194,6 +194,17 @@
         }
     }
 
+    class GraphicsImage {
+        constructor() {
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+        }
+        drawLine() {
+            let sp = new Laya.Sprite();
+            Laya.stage.addChild(sp);
+            sp.graphics.drawLine(10, 58, 146, 58, "#FF0000", 3);
+        }
+    }
+
     class GameRT extends Laya.Script {
         constructor() {
             super();
@@ -207,6 +218,8 @@
             new SpriteSwitchImage();
             new DrawTexture();
             new DrawTextureToSwitch();
+            let graphicsImage = new GraphicsImage();
+            graphicsImage.drawLine();
         }
         onDisable() {
         }
