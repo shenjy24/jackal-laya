@@ -1,6 +1,26 @@
 (function () {
     'use strict';
 
+    class AtlasAnimation {
+        constructor() {
+            Laya.init(1334, 750, Laya.WebGL);
+            this.roleAni = new Laya.Animation();
+            this.roleAni.loadAtlas("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
+        }
+        onLoaded() {
+            Laya.stage.addChild(this.roleAni);
+        }
+    }
+
+    class AnimationRT extends Laya.Script {
+        constructor() { super(); }
+        onEnable() {
+            let atlasAni = new AtlasAnimation();
+        }
+        onDisable() {
+        }
+    }
+
     var Scene = Laya.Scene;
     var REG = Laya.ClassUtils.regClass;
     var ui;
@@ -318,6 +338,9 @@
             this.btn.on(Laya.Event.CLICK, this, () => {
                 Laya.Scene.open("Game.scene");
             });
+            this.aniBtn.on(Laya.Event.CLICK, this, () => {
+                Laya.Scene.open("Animation.scene");
+            });
         }
         onDisable() {
         }
@@ -327,6 +350,7 @@
         constructor() { }
         static init() {
             var reg = Laya.ClassUtils.regClass;
+            reg("script/AnimationRT.ts", AnimationRT);
             reg("script/BitmapFontRT.ts", BitmapFontRT);
             reg("script/GameRT.ts", GameRT);
             reg("script/MainRT.ts", MainRT);

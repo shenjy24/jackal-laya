@@ -5,6 +5,7 @@ import LoadImage from '../feature/image/LoadImage';
 import DrawTexture from '../feature/image/DrawTexture';
 import DrawTextureToSwitch from '../feature/image/DrawTextureToSwitch';
 import GraphicsImage from '../feature/image/GraphicsImage';
+import AtlasAnimation from '../feature/animation/AtlasAnimation';
 export default class GameRT extends Laya.Script {
     /** @prop {name:strType, tips:"字符串类型示例", type:String, default:"laya"}*/
     public strType: string = "laya";
