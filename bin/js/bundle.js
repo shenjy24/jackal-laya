@@ -8,12 +8,29 @@
             Laya.stage.bgColor = '#FFFFFF';
             this.ani = new Laya.Animation();
             console.log("加载图集动画");
-            this.ani.loadAtlas("res/atlas/role/frameAni.atlas", Laya.Handler.create(this, this.onLoaded));
+            this.ani.loadAtlas("res/atlas/role/frameAni.atlas", Laya.Handler.create(this, this.onLoadedImage));
         }
         onLoaded() {
             console.log("图集动画添加到舞台");
             Laya.stage.addChild(this.ani);
             this.ani.play();
+        }
+        onLoadedFrame() {
+            Laya.stage.addChild(this.ani);
+            Laya.Animation.createFrames(this.aniUrls("moveB", 7), "dizziness");
+            this.ani.play(0, true, "dizziness");
+        }
+        onLoadedImage() {
+            this.ani = new Laya.Animation();
+            Laya.stage.addChild(this.ani);
+            this.ani.loadImages(this.aniUrls("moveH", 7)).play();
+        }
+        aniUrls(aniName, length) {
+            var urls = [];
+            for (var i = 0; i < length; i++) {
+                urls.push("role/frameAni/" + aniName + i + ".png");
+            }
+            return urls;
         }
     }
 
