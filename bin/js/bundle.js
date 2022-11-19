@@ -3,12 +3,17 @@
 
     class AtlasAnimation {
         constructor() {
-            Laya.init(1334, 750, Laya.WebGL);
-            this.roleAni = new Laya.Animation();
-            this.roleAni.loadAtlas("res/atlas/comp.atlas", Laya.Handler.create(this, this.onLoaded));
+            console.log(`width:${Laya.Browser.clientWidth}, height:${Laya.Browser.clientHeight}`);
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.bgColor = '#FFFFFF';
+            this.ani = new Laya.Animation();
+            console.log("加载图集动画");
+            this.ani.loadAtlas("res/atlas/role/frameAni.atlas", Laya.Handler.create(this, this.onLoaded));
         }
         onLoaded() {
-            Laya.stage.addChild(this.roleAni);
+            console.log("图集动画添加到舞台");
+            Laya.stage.addChild(this.ani);
+            this.ani.play();
         }
     }
 
