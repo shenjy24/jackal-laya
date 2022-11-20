@@ -3,9 +3,6 @@
 
     class AtlasAnimation {
         constructor() {
-            console.log(`width:${Laya.Browser.clientWidth}, height:${Laya.Browser.clientHeight}`);
-            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
-            Laya.stage.bgColor = '#FFFFFF';
             this.ani = new Laya.Animation();
             console.log("加载图集动画");
             this.ani.loadAtlas("res/atlas/role/frameAni.atlas", Laya.Handler.create(this, this.onLoadedImage));
@@ -34,10 +31,76 @@
         }
     }
 
+    class TweenAnimation {
+        constructor() {
+        }
+        createTweenFromText() {
+            let w = 600;
+            let offsetX = Laya.stage.width - w >> 1;
+            let demoString = "LayaBox";
+            let letterText;
+            for (let i = 0, len = demoString.length; i < len; ++i) {
+                letterText = this.createLetter(demoString.charAt(i));
+                letterText.x = w / len * i + offsetX;
+                letterText.y = 200;
+                Laya.Tween.from(letterText, { y: 100 }, 3000, Laya.Ease.elasticOut, null, i * 1000);
+            }
+        }
+        createTweenToText() {
+            let w = 600;
+            let offsetX = Laya.stage.width - w >> 1;
+            let demoString = "LayaBox";
+            let letterText;
+            for (let i = 0, len = demoString.length; i < len; ++i) {
+                letterText = this.createLetter(demoString.charAt(i));
+                letterText.x = w / len * i + offsetX;
+                letterText.y = 800;
+                Laya.Tween.to(letterText, { y: 500, update: new Laya.Handler(this, this.updateColor, [letterText]) }, 1000, Laya.Ease.bounceIn, Laya.Handler.create(this, this.changeColor, [letterText]), i * 100);
+            }
+        }
+        updateColor(txt) {
+            var c = Math.floor(Math.random() * 3);
+            switch (c) {
+                case 0:
+                    txt.color = "#eee000";
+                    break;
+                case 1:
+                    txt.color = "#ffffff";
+                    break;
+                case 2:
+                    txt.color = "#ff0000";
+                    break;
+                default:
+                    txt.color = "#eee000";
+                    break;
+            }
+        }
+        changeColor(txt) {
+            txt.color = "#ff0000";
+        }
+        createLetter(char) {
+            let letter = new Laya.Text();
+            letter.text = char;
+            letter.color = "#FFFFFF";
+            letter.font = "Impact";
+            letter.fontSize = 180;
+            Laya.stage.addChild(letter);
+            return letter;
+        }
+    }
+
     class AnimationRT extends Laya.Script {
-        constructor() { super(); }
+        constructor() {
+            super();
+            console.log(`width:${Laya.Browser.clientWidth}, height:${Laya.Browser.clientHeight}`);
+            Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL);
+            Laya.stage.bgColor = '#1b2436';
+        }
         onEnable() {
             let atlasAni = new AtlasAnimation();
+            let tweenAni = new TweenAnimation();
+            tweenAni.createTweenFromText();
+            tweenAni.createTweenToText();
         }
         onDisable() {
         }

@@ -4,9 +4,9 @@ export default class AtlasAnimation {
 
     constructor() {
         //初始化舞台
-        console.log(`width:${Laya.Browser.clientWidth}, height:${Laya.Browser.clientHeight}`)
-        Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL)
-        Laya.stage.bgColor = '#FFFFFF'
+        // console.log(`width:${Laya.Browser.clientWidth}, height:${Laya.Browser.clientHeight}`)
+        // Laya.init(Laya.Browser.clientWidth, Laya.Browser.clientHeight, Laya.WebGL)
+        // Laya.stage.bgColor = '#FFFFFF'
         //创建动画实例
         this.ani = new Laya.Animation()
         //加载动画画集，加载成功后执行回调方法
