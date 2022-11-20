@@ -1,4 +1,5 @@
 import AtlasAnimation from "../feature/animation/AtlasAnimation";
+import TimeLineAnimation from "../feature/animation/TimeLineAnimation";
 import TweenAnimation from "../feature/animation/TweenAnimation";
 
 export default class AnimationRT extends Laya.Script {
@@ -18,6 +19,8 @@ export default class AnimationRT extends Laya.Script {
         let tweenAni: TweenAnimation = new TweenAnimation()
         tweenAni.createTweenFromText()
         tweenAni.createTweenToText()
+        // 时间轴动画
+        let timelineAni: TimeLineAnimation = new TimeLineAnimation()
     }
 
     onDisable(): void {

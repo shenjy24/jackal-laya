@@ -66,6 +66,10 @@ P 0AF7F04E w6.png
 P A661B35F w7.png
 P 0B161F6E w8.png
 D res/apes
+P 7105AB31 monkey0.png
+P B919DA90 monkey1.png
+P 40CFAF5A monkey2.png
+P 030540DA monkey3.png
 D role/atlasAni
 R E4F53C64 139x.atlas
 R C22EAAAA 139x.png

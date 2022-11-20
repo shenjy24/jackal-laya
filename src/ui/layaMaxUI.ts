@@ -14,4 +14,13 @@ export module ui {
         }
     }
     REG("ui.BitmapFontUI",BitmapFontUI);
+    export class TimeLineAnimationUI extends Scene {
+		public monkey:Laya.Animation;
+        constructor(){ super()}
+        createChildren():void {
+            super.createChildren();
+            this.loadScene("TimeLineAnimation");
+        }
+    }
+    REG("ui.TimeLineAnimationUI",TimeLineAnimationUI);
 }

@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":640,"height":1136},"compId":2,"child":[{"type":"Animation","props":{"y":500,"x":250,"var":"monkey","source":"TimeLineAnimation.ani","name":"monkey","interval":1000},"compId":3}],"loadList":["TimeLineAnimation.ani"],"loadList3D":[]}

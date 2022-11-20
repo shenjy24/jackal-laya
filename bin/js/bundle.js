@@ -31,6 +31,50 @@
         }
     }
 
+    var Scene = Laya.Scene;
+    var REG = Laya.ClassUtils.regClass;
+    var ui;
+    (function (ui) {
+        class BitmapFontUI extends Scene {
+            constructor() { super(); }
+            createChildren() {
+                super.createChildren();
+                this.loadScene("BitmapFont");
+            }
+        }
+        ui.BitmapFontUI = BitmapFontUI;
+        REG("ui.BitmapFontUI", BitmapFontUI);
+        class TimeLineAnimationUI extends Scene {
+            constructor() { super(); }
+            createChildren() {
+                super.createChildren();
+                this.loadScene("TimeLineAnimation");
+            }
+        }
+        ui.TimeLineAnimationUI = TimeLineAnimationUI;
+        REG("ui.TimeLineAnimationUI", TimeLineAnimationUI);
+    })(ui || (ui = {}));
+
+    class TimeLineAnimation {
+        constructor() {
+            Laya.loader.load("res/atlas/res/apes.atlas", Laya.Handler.create(this, this.onLoaded));
+        }
+        onLoaded() {
+            let tl = new Laya.Animation();
+            tl.loadAnimation("TimeLineAnimation.ani");
+            Laya.stage.addChild(tl);
+            tl.play();
+            let tl2 = new Laya.Animation();
+            tl2.loadAnimation("TimeLineAnimation.ani");
+            Laya.stage.addChild(tl2);
+            tl2.play(0, true, "pivot");
+            tl2.pos(300, 0);
+            let tl3 = new ui.TimeLineAnimationUI();
+            Laya.stage.addChild(tl3);
+            console.log(tl3.monkey);
+        }
+    }
+
     class TweenAnimation {
         constructor() {
         }
@@ -101,25 +145,11 @@
             let tweenAni = new TweenAnimation();
             tweenAni.createTweenFromText();
             tweenAni.createTweenToText();
+            let timelineAni = new TimeLineAnimation();
         }
         onDisable() {
         }
     }
-
-    var Scene = Laya.Scene;
-    var REG = Laya.ClassUtils.regClass;
-    var ui;
-    (function (ui) {
-        class BitmapFontUI extends Scene {
-            constructor() { super(); }
-            createChildren() {
-                super.createChildren();
-                this.loadScene("BitmapFont");
-            }
-        }
-        ui.BitmapFontUI = BitmapFontUI;
-        REG("ui.BitmapFontUI", BitmapFontUI);
-    })(ui || (ui = {}));
 
     class BitmapFontRT extends ui.BitmapFontUI {
         constructor() {
